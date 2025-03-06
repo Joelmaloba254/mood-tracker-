@@ -3,17 +3,27 @@
   "builds": [
     {
       "src": "client/package.json",
-      "use": "@vercel/react"
+      "use": "@vercel/static-build",
+      "dest": "/client"
     },
     {
       "src": "server/package.json",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "dest": "/api"
     }
   ],
   "routes": [
     {
+      "src": "/client/(.*)",
+      "dest": "/client/$1"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "client/$1"
+      "dest": "/client/$1"
     }
   ]
 }
