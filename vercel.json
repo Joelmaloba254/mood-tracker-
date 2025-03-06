@@ -2,22 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "client/package.json",   # Frontend build configuration
-      "use": "@vercel/react"          # If using React, Next.js, or similar
+      "src": "client/package.json",
+      "use": "@vercel/react"
     },
     {
-      "src": "backend/index.js",      # Backend API configuration
-      "use": "@vercel/node"           # Use Node.js for backend
+      "src": "server/package.json",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",             # Route for API requests
-      "dest": "/backend/index.js"    # Points to backend logic (API)
-    },
-    {
-      "src": "/(.*)",                 # All other routes are forwarded to frontend
-      "dest": "/client/$1"            # Frontend app served from the client directory
+      "src": "/(.*)",
+      "dest": "client/$1"
     }
   ]
 }
